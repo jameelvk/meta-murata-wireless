@@ -1,5 +1,5 @@
 #!/bin/bash
-VERSION=03222018
+VERSION=05252018
 
 # Use colors to highlight pass/fail conditions. 
 RED='\033[1;31m' # Red font to flag errors
@@ -197,7 +197,7 @@ done
 		echo " "
 		echo "----------------------------------------------------------------------------"
 		echo "|Entry|     i.MX Yocto   | Yocto   | i.MX          |"\""meta-murata-wireless"\"" |"
-		echo "|     |      Release     | branch  | Supported     |     Release Tag       |"
+		echo "|     |      Release     | branch  | Supported     |     Developer Tag     |"
 		echo "|-----|------------------|---------|---------------|-----------------------|"
 		echo "|  1  | 4.9.51 8MQ Beta  | morty   | 8             | imx8-morty-orga       |"
 		echo "|  2  | 4.9.11_1.0.0 GA  | morty   | 6,7           | imx-morty-orga        |"
@@ -227,7 +227,7 @@ done
 		echo " "
 		echo "----------------------------------------------------------------------------"
 		echo "|Entry|     i.MX Yocto   | Yocto   | i.MX          |"\""meta-murata-wireless"\"" |"
-		echo "|     |      Release     | branch  | Supported     |     Release Tag       |"
+		echo "|     |      Release     | branch  | Supported     |     Developer Tag     |"
 		echo "|-----|------------------|---------|---------------|-----------------------|"
 		echo "|  1  | 4.9.51 8MQ Beta  | morty   | 8             | imx8-morty-battra     |"
 		echo "|  2  | 4.9.11_1.0.0 GA  | morty   | 6,7           | imx-morty-battra      |"
@@ -562,7 +562,7 @@ case $BRANCH_RELEASE_OPTION in
 		echo "| Entry  |  Options                               |"
 		echo "|--------|----------------------------------------|"
 		echo "|   1.   | 1.8V VIO signaling with UHS support    |"
-		echo "|   ${GRN}2.${NC}   | ${GRN}3.3V VIO signaling (No HW mods needed)${NC} |"
+		echo -e "|   ${GRN}2.${NC}   | ${GRN}3.3V VIO signaling (No HW mods needed)${NC} |"
 		echo "--------------------------------------------------"
 		echo " "
                 echo " Refer to Murata Quickstart Guide for more details:"
@@ -771,7 +771,7 @@ case $BRANCH_RELEASE_OPTION in
 		echo "| Entry  |  Options                             |"
 		echo "|--------|--------------------------------------|"
 		echo "|   1.   | 1.8V VIO signaling with UHS support  |"
-		echo "|   ${GRN}2.${NC}   | ${GRN}3.3V VIO signaling${NC}                   |"
+		echo -e "|   ${GRN}2.${NC}   | ${GRN}3.3V VIO signaling${NC}                   |"
 		echo "-------------------------------------------------"
 		echo " "
                 echo " Refer to Murata Quickstart Guide for more details:"
@@ -917,6 +917,9 @@ if [ "$PROMPT" = "n" ] || [ "$PROMPT" = "N" ]; then
 			echo "|       |                              | with hardware graphics. They are not  |"
 			echo "|       |                              | supported on the i.MX 6UltraLite,     |"
 			echo "|       |                              | i.MX 6UltraLiteLite, and i.MX 7Dual.  |"
+			echo "|   5   | core-image-base              | A console-only image that fully       |"
+			echo "|       |                              | supports the target device hardware   |"
+			echo "|       |                              |                                       |"
 			echo "--------------------------------------------------------------------------------"
 
 			while true; do
@@ -940,6 +943,11 @@ if [ "$PROMPT" = "n" ] || [ "$PROMPT" = "N" ]; then
 
 				4)
 				IMAGE_NAME=fsl-image-qt5-validation-imx
+				break
+				;;
+
+				5)
+				IMAGE_NAME=core-image-base
 				break
 				;;
 
