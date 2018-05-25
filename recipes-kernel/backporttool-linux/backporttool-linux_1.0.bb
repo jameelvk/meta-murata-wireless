@@ -38,26 +38,17 @@ do_compile() {
         echo "TEST_LDFLAGS:: ${LDFLAGS}"
         echo "S DIR:  {S}"
 
+	cp ${STAGING_KERNEL_BUILDDIR}/.config ${STAGING_KERNEL_DIR}/.config
+	cp ${STAGING_KERNEL_BUILDDIR}/kernel-abiversion ${STAGING_KERNEL_DIR}/kernel-abiversion
+
+	rm -rf .git
+
         cp -a ${TMPDIR}/work/x86_64-linux/backporttool-native/1.0-r0/backporttool-native-1.0/. .
 
-#       make clean
-
         oe_runmake KLIB="${STAGING_KERNEL_DIR}" KLIB_BUILD="${STAGING_KERNEL_BUILDDIR}" modules
-
-#        oe_runmake KLIB="${TMPDIR}/work-shared/${MACHINE}/kernel-source" \
-#KLIB_BUILD="${TMPDIR}/work/imx6ulevk-poky-linux-gnueabi/linux-imx/4.9.11-r0/build" \
-#modules
 }
 
 do_install() {
-#       install -d ${D}${sbindir}
-#       install -m 0644 ${S}/.config ${D}${sbindir}
-#	install -m 0644 ${S}/compat/compat.ko ${D}${sbindir}
-#	install -m 0644 ${S}/drivers/net/wireless/broadcom/brcm80211/brcmfmac/brcmfmac.ko ${D}${sbindir}
-#	install -m 0644 ${S}/drivers/net/wireless/broadcom/brcm80211/brcmutil/brcmutil.ko ${D}${sbindir}
-#	install -m 0644 ${S}/net/wireless/cfg80211.ko ${D}${sbindir}
-
-
 	install -d ${D}/lib/modules/${KERNEL_VERSION}/kernel/drivers/net/wireless/broadcom/brcm80211/brcmfmac
 	install -d ${D}/lib/modules/${KERNEL_VERSION}/kernel/drivers/net/wireless/broadcom/brcm80211/brcmutil
 	install -d ${D}/lib/modules/${KERNEL_VERSION}/kernel/compat
