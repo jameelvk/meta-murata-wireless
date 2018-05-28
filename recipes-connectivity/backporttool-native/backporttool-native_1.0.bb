@@ -47,7 +47,7 @@ do_compile () {
 
         cp -a ${TMPDIR}/work/x86_64-linux/backporttool-native/1.0-r0/imx-krogoth-battra_r1.0/. .
 
-        oe_runmake KLIB="${STAGING_KERNEL_DIR}" KLIB_BUILD="${STAGING_KERNEL_BUILDDIR}" defconfig-brcmfmac
+        oe_runmake KLIB="${STAGING_KERNEL_DIR}" KLIB_BUILD="${STAGING_KERNEL_DIR}" defconfig-brcmfmac
 }
 
 do_install () {
