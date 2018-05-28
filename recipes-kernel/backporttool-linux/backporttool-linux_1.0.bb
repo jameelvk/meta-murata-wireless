@@ -19,6 +19,12 @@ inherit linux-kernel-base kernel-arch
 DEPENDS = " linux-imx"
 DEPENDS += " backporttool-native"
 
+#Added to make it to work for core-image-base
+inherit module-base
+addtask make_scripts after do_patch before do_configure
+do_make_scripts[lockfiles] = "${TMPDIR}/kernel-scripts.lock"
+do_make_scripts[deptask] = "do_populate_sysroot"
+
 S = "${WORKDIR}/backporttool-linux-1.0"
 B = "${WORKDIR}/backporttool-linux-1.0/"
 
