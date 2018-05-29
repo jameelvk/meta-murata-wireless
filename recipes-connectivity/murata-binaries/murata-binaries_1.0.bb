@@ -86,7 +86,7 @@ do_install () {
 	install -m 444 ${S}/cyw-fmac-nvram/README_NVRAM ${D}/lib/firmware/brcm
 
 #       Copying wl tool binary to /usr/sbin
-	install -m 755 ${S}/cyw-fmac-utils-imx32/wl ${D}/usr/sbin/wl
+	install -m 755 ${S}/cyw-fmac-utils-imx64/wl ${D}/usr/sbin/wl
 }
 
 PACKAGES =+ "${PN}-mfgtest"
