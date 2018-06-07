@@ -31,8 +31,6 @@ do_configure () {
 
 export EXTRA_CFLAGS = "${CFLAGS}"
 export BINDIR = "${sbindir}"
-#KLIB="${TMPDIR}/work-shared/${MACHINE}/kernel-source"
-#KLIB_BUILD="${TMPDIR}/work/imx6ulevk-poky-linux-gnueabi/linux-imx/4.9.11-r0/build"
 
 do_compile () {
 	echo "Compiling: "
@@ -47,8 +45,7 @@ do_compile () {
 	cp ${STAGING_KERNEL_BUILDDIR}/.config ${STAGING_KERNEL_DIR}/.config
 	cp ${STAGING_KERNEL_BUILDDIR}/kernel-abiversion ${STAGING_KERNEL_DIR}/kernel-abiversion
 
-
-        cp -a ${TMPDIR}/work/x86_64-linux/backporttool-native/1.0-r0/imx-morty-orga_r1.0/. .
+        cp -a ${TMPDIR}/work/x86_64-linux/backporttool-native/${PV}-r0/imx-morty-orga_r${PV}/. .
 
         oe_runmake KLIB="${STAGING_KERNEL_DIR}" KLIB_BUILD="${STAGING_KERNEL_DIR}" defconfig-brcmfmac
 }

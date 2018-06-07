@@ -9,9 +9,11 @@ SRC_URI += "https://github.com/murata-wireless/meta-murata-wireless/raw/imx-mort
           
 SRC_URI[archive1.md5sum] = "a3e4e741d7ba3cc129c0163f87cd0dca"
 SRC_URI[archive1.sha256sum] = "4f2ce72bac29a214bd59f813bf4a032ce5fa0912ddfbbacc7c7a4e04042c252a"
+
 #LICENSE
 SRC_URI[archive99.md5sum] = "b234ee4d69f5fce4486a80fdaf4a4263"
 SRC_URI[archive99.sha256sum] = "8177f97513213526df2cf6184d8ff986c675afb514d4e68a404010521b880643"
+
 inherit linux-kernel-base kernel-arch
 
 DEPENDS = " linux-imx"
@@ -21,8 +23,8 @@ addtask make_scripts after do_patch before do_configure
 do_make_scripts[lockfiles] = "${TMPDIR}/kernel-scripts.lock"
 do_make_scripts[deptask] = "do_populate_sysroot"
 
-S = "${WORKDIR}/backporttool-linux-1.0"
-B = "${WORKDIR}/backporttool-linux-1.0/"
+S = "${WORKDIR}/backporttool-linux-${PV}"
+B = "${WORKDIR}/backporttool-linux-${PV}/"
 
 #You should set variable CROSS_COMPILE, not a CROSS-COMPILE
 export CROSS_COMPILE = "${TARGET_PREFIX}"
@@ -46,7 +48,7 @@ do_compile() {
 
 	rm -rf .git
 
-        cp -a ${TMPDIR}/work/x86_64-linux/backporttool-native/1.0-r0/backporttool-native-1.0/. .
+        cp -a ${TMPDIR}/work/x86_64-linux/backporttool-native/${PV}-r0/backporttool-native-${PV}/. .
 
         oe_runmake KLIB="${STAGING_KERNEL_DIR}" KLIB_BUILD="${STAGING_KERNEL_BUILDDIR}" modules
 }
