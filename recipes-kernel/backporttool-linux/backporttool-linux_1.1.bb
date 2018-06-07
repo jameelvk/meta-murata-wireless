@@ -7,8 +7,8 @@ LIC_FILES_CHKSUM = "file://${WORKDIR}/LICENSE;md5=b234ee4d69f5fce4486a80fdaf4a42
 SRC_URI =  "https://github.com/murata-wireless/cyw-fmac/raw/imx-morty-battra/imx-morty-battra_r${PV}.tar.gz;name=archive1"
 SRC_URI += "https://github.com/murata-wireless/meta-murata-wireless/raw/imx-morty-battra/LICENSE;name=archive99"
 
-SRC_URI[archive1.md5sum] = "308528ef68f054af128e4664e6af4333"
-SRC_URI[archive1.sha256sum] = "503c001845416b33b52704da39bec16f049def66081478b1b9107f12cf006046"
+SRC_URI[archive1.md5sum] = "489b0014a3379f10bc6d8a558fecce26"
+SRC_URI[archive1.sha256sum] = "db093dfddcee2ae9a9c065ae09ad7bb82ec231c1da28a44aae983353e6f99db0"
 
 #LICENSE
 SRC_URI[archive99.md5sum] = "b234ee4d69f5fce4486a80fdaf4a4263"
@@ -25,8 +25,8 @@ addtask make_scripts after do_patch before do_configure
 do_make_scripts[lockfiles] = "${TMPDIR}/kernel-scripts.lock"
 do_make_scripts[deptask] = "do_populate_sysroot"
 
-S = "${WORKDIR}/backporttool-linux-1.0"
-B = "${WORKDIR}/backporttool-linux-1.0/"
+S = "${WORKDIR}/backporttool-linux-1.1"
+B = "${WORKDIR}/backporttool-linux-1.1/"
 
 #You should set variable CROSS_COMPILE, not a CROSS-COMPILE
 export CROSS_COMPILE = "${TARGET_PREFIX}"
@@ -49,7 +49,7 @@ do_compile() {
 	cp ${STAGING_KERNEL_BUILDDIR}/kernel-abiversion ${STAGING_KERNEL_DIR}/kernel-abiversion
 
 	rm -rf .git
-        cp -a ${TMPDIR}/work/x86_64-linux/backporttool-native/1.0-r0/backporttool-native-1.0/. .
+        cp -a ${TMPDIR}/work/x86_64-linux/backporttool-native/1.1-r0/backporttool-native-1.1/. .
 
         oe_runmake KLIB="${STAGING_KERNEL_DIR}" KLIB_BUILD="${STAGING_KERNEL_BUILDDIR}" modules
 }
