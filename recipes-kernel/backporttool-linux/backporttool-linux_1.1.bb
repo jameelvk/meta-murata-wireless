@@ -25,8 +25,8 @@ addtask make_scripts after do_patch before do_configure
 do_make_scripts[lockfiles] = "${TMPDIR}/kernel-scripts.lock"
 do_make_scripts[deptask] = "do_populate_sysroot"
 
-S = "${WORKDIR}/backporttool-linux-1.1"
-B = "${WORKDIR}/backporttool-linux-1.1/"
+S = "${WORKDIR}/backporttool-linux-${PV}"
+B = "${WORKDIR}/backporttool-linux-${PV}/"
 
 #You should set variable CROSS_COMPILE, not a CROSS-COMPILE
 export CROSS_COMPILE = "${TARGET_PREFIX}"
@@ -49,7 +49,7 @@ do_compile() {
 	cp ${STAGING_KERNEL_BUILDDIR}/kernel-abiversion ${STAGING_KERNEL_DIR}/kernel-abiversion
 
 	rm -rf .git
-        cp -a ${TMPDIR}/work/x86_64-linux/backporttool-native/1.1-r0/backporttool-native-1.1/. .
+        cp -a ${TMPDIR}/work/x86_64-linux/backporttool-native/${PV}-r0/backporttool-native-${PV}/. .
 
         oe_runmake KLIB="${STAGING_KERNEL_DIR}" KLIB_BUILD="${STAGING_KERNEL_BUILDDIR}" modules
 }
